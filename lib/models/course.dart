@@ -6,13 +6,14 @@ class Course {
   int weekday;
   bool isActive;
 
-  Course(
-      {required this.name,
-      required this.place,
-      required this.start,
-      required this.end,
-      required this.weekday,
-      this.isActive = false});
+  Course({
+    required this.name,
+    required this.place,
+    required this.start,
+    required this.end,
+    required this.weekday,
+    this.isActive = false,
+  });
 
   @override
   String toString() {

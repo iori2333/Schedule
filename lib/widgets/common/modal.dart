@@ -6,12 +6,12 @@ class Modal extends StatelessWidget {
   final Widget content;
   final List<Widget> actions;
 
-  const Modal(
-      {required this.title,
-      required this.content,
-      required this.actions,
-      Key? key})
-      : super(key: key);
+  const Modal({
+    required this.title,
+    required this.content,
+    required this.actions,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

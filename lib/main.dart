@@ -15,8 +15,8 @@ void main() {
 
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (_) => ThemeProvider()),
-      ChangeNotifierProvider(create: (_) => DateProvider()),
+      ChangeNotifierProvider(create: (context) => ThemeProvider()),
+      ChangeNotifierProvider(create: (context) => DateProvider()),
     ],
     child: const MyApp(),
   ));
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Schedule',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch(
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.light,
         ),
       ),
-      darkTheme:ThemeData(
+      darkTheme: ThemeData(
         colorScheme: ColorScheme.fromSwatch(
           primarySwatch: context.watch<ThemeProvider>().theme,
           brightness: Brightness.dark,

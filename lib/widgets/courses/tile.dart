@@ -7,12 +7,12 @@ class CourseTile extends StatelessWidget {
   final double width;
   final double height;
 
-  const CourseTile(
-      {required this.course,
-      required this.width,
-      required this.height,
-      Key? key})
-      : super(key: key);
+  const CourseTile({
+    required this.course,
+    required this.width,
+    required this.height,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
