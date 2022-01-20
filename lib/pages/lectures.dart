@@ -7,7 +7,7 @@ class LecturePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        children: [],
+        children: const [],
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.subscriptions),

@@ -16,13 +16,13 @@ class SettingPage extends StatelessWidget {
           context: context,
           tiles: [
             ListTile(
-              title: Text('Title'),
-              subtitle: Text('subtitle'),
+              title: const Text('Title'),
+              subtitle: const Text('subtitle'),
               onTap: () {},
             ),
             ListTile(
-              title: Text('Title'),
-              subtitle: Text('subtitle'),
+              title: const Text('Title'),
+              subtitle: const Text('subtitle'),
               onTap: () {},
             ),
           ],

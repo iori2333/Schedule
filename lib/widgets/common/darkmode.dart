@@ -31,8 +31,8 @@ class DarkModeSetter extends StatelessWidget {
   Widget build(BuildContext context) {
     var mode = context.watch<ThemeProvider>().mode;
     return IconButton(
-      onPressed: () {
-        context.read<ThemeProvider>().toggleMode();
+      onPressed: () async {
+        await context.read<ThemeProvider>().toggleMode();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Switched to ${_getDescription(mode)}'),

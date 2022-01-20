@@ -84,19 +84,17 @@ class CourseTileList extends StatelessWidget {
             _createCourseNo(height),
             SizedBox(
               height: fullHeight,
-              child: SingleChildScrollView(
-                child: Stack(
-                  children: [
-                    ..._createDividers(size.width, height),
-                    ..._courses
-                        .map((e) => CourseTile(
-                              course: e,
-                              width: width,
-                              height: height,
-                            ))
-                        .toList()
-                  ],
-                ),
+              child: Stack(
+                children: [
+                  ..._createDividers(size.width, height),
+                  ..._courses
+                      .map((e) => CourseTile(
+                            course: e,
+                            width: width,
+                            height: height,
+                          ))
+                      .toList()
+                ],
               ),
             ),
           ],

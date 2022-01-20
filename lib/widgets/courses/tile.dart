@@ -27,19 +27,21 @@ class CourseTile extends StatelessWidget {
       child: InkWell(
         onTap: () {},
         borderRadius: const BorderRadius.all(Radius.circular(5)),
-        child: BlurredContainer(child: Container(
-          decoration: BoxDecoration(
-            color: course.isActive
-                ? Colors.amber.withOpacity(0.6)
-                : Colors.lime.withOpacity(0.6),
-            borderRadius: const BorderRadius.all(Radius.circular(5)),
+        child: BlurredContainer(
+          child: Container(
+            decoration: BoxDecoration(
+              color: course.isActive
+                  ? Colors.amber.withOpacity(0.6)
+                  : Colors.lime.withOpacity(0.6),
+              borderRadius: const BorderRadius.all(Radius.circular(5)),
+            ),
+            padding: const EdgeInsets.all(2.5),
+            child: Text(
+              (course.isActive ? "" : "[Skipped]\n") + course.toString(),
+              textScaleFactor: 0.9,
+            ),
           ),
-          padding: const EdgeInsets.all(2.5),
-          child: Text(
-            (course.isActive ? "" : "[Skipped]\n") + course.toString(),
-            textScaleFactor: 0.9,
-          ),
-        )),
+        ),
       ),
     );
   }

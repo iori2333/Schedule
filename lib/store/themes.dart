@@ -15,31 +15,35 @@ class ThemeProvider with ChangeNotifier {
 
   ThemeProvider() {
     SharedPreferences.getInstance().then((value) {
-      _current = value.getInt("theme") ?? 0;
+      _color = value.getInt("theme-color") ?? 0;
+      _mode = value.getInt("theme-mode") ?? 0;
     });
   }
 
-  var _current = 0;
+  var _color = 0;
 
   var _mode = 0;
 
-  MaterialColor get theme => _colors[_current];
+  MaterialColor get theme => _colors[_color];
 
   ThemeMode get mode => _modes[_mode];
 
-  void setColor(int index) async {
+  Future setColor(int index) async {
     if (index >= _colors.length) {
       return;
     }
 
     var _prefs = await SharedPreferences.getInstance();
-    _prefs.setInt("theme", index);
-    _current = index;
+    _prefs.setInt("theme-color", index);
+    _color = index;
     notifyListeners();
   }
 
-  void toggleMode() {
+  Future toggleMode() async {
     _mode = (_mode + 1) % _modes.length;
+
+    var _prefs = await SharedPreferences.getInstance();
+    _prefs.setInt("theme-mode", _mode);
     notifyListeners();
   }
 }
