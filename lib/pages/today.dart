@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:schedule/models/task.dart';
 import 'package:schedule/widgets/today/task.dart';
+import 'package:schedule/widgets/today/task_modal.dart';
 
 class TodayPage extends StatefulWidget {
   const TodayPage({Key? key}) : super(key: key);
@@ -16,6 +17,19 @@ class _TodayPageState extends State<TodayPage> {
   }
 
   final _controller = TextEditingController();
+
+  final _tasks = [
+    Task(
+      title: "114514",
+      description: "1919810",
+      due: DateTime.now(),
+    ),
+    Task(
+      title: "114514",
+      description: "1919810",
+      due: DateTime.now().add(const Duration(hours: 1)),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -34,21 +48,20 @@ class _TodayPageState extends State<TodayPage> {
           const Divider(
             height: 0,
           ),
-          TaskTile(
-            title: "114514",
-            description: "1919810",
-            due: DateTime.now(),
-          ),
-          TaskTile(
-            title: "114514",
-            description: "1919810",
-            due: DateTime.now(),
-          ),
+          ..._tasks.map((e) => TaskTile(task: e)).toList(),
         ],
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () async {
+          await showDialog(
+            context: context,
+            builder: (context) => TaskModal(
+              title: "New Todo",
+              onSubmit: (task) {},
+            ),
+          );
+        },
       ),
     );
   }

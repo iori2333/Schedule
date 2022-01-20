@@ -26,7 +26,7 @@ class _WeekModalState extends State<WeekModal> {
     return Modal(
       title: const Text('Change Week'),
       content: SizedBox(
-        height: 120,
+        height: 100,
         child: CupertinoPicker(
           itemExtent: 32,
           scrollController: FixedExtentScrollController(
