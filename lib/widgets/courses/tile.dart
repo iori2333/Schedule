@@ -30,6 +30,7 @@ class CourseTile extends StatelessWidget {
               : Colors.lime.withOpacity(0.8),
           borderRadius: const BorderRadius.all(Radius.circular(5)),
         ),
+        padding: const EdgeInsets.all(2.5),
         child: InkWell(
           borderRadius: const BorderRadius.all(Radius.circular(5)),
           child: Text(

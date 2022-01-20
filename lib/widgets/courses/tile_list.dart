@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:schedule/global.dart';
 import 'package:schedule/models/course.dart';
 import 'package:schedule/widgets/courses/tile.dart';
 
@@ -7,7 +8,6 @@ class CourseTileList extends StatelessWidget {
 
   static const _maxColumns = 7;
   static const _maxRows = 12;
-  static const _appBarHeight = 60.0;
   static const _titleHeight = 30.0;
   static const _sideWidth = 20.0;
 
@@ -68,7 +68,8 @@ class CourseTileList extends StatelessWidget {
     var size = MediaQuery.of(context).size;
 
     var width = size.width / _maxColumns - _sideWidth / _maxColumns;
-    var height = (size.height - _appBarHeight - _titleHeight) / _maxRows;
+    var height =
+        (size.height - Constants.appBarHeight - _titleHeight) / _maxRows;
 
     return Column(
       children: [
@@ -77,7 +78,7 @@ class CourseTileList extends StatelessWidget {
           children: [
             _createCourseNo(height),
             SizedBox(
-              height: size.height - _appBarHeight - _titleHeight,
+              height: size.height - Constants.appBarHeight - _titleHeight,
               child: SingleChildScrollView(
                 child: Stack(
                   children: [
