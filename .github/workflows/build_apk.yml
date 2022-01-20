@@ -28,11 +28,16 @@ jobs:
           flutter build apk
           flutter build appbundle
 
+      - name: Package
+        run: |
+          cp build\app\outputs\flutter-apk\app-release.apk .
+          cp build\app\outputs\bundle\release\app-release.aab .
+
       - name: Release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.RELEASE_PKG_TOKEN }}"
           prerelease: false
           files: |
-            build\app\outputs\flutter-apk\app-release.apk
-            build\app\outputs\flutter-apk\app-release.aab
+            app-release.apk
+            app-release.aab
