@@ -1,10 +1,10 @@
 import 'package:fluro/fluro.dart';
-import 'package:schedule/pages/courses.dart';
+import 'package:schedule/pages/index.dart';
 import 'package:schedule/pages/settings.dart';
 
 class AppRouter {
   static final Map<String, HandlerFunc> _routes = {
-    '/': (context, params) => const CoursePage(),
+    '/': (context, params) => const IndexPage(),
     '/settings': (context, params) => const SettingPage(),
   };
 

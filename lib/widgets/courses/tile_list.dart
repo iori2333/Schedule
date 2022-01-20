@@ -18,7 +18,8 @@ class CourseTileList extends StatelessWidget {
     Course(name: "数学物理方法", place: "仙II-204", start: 3, end: 4, weekday: 1),
     Course(name: "数学物理方法", place: "仙II-204", start: 5, end: 6, weekday: 4),
     Course(name: "数字信号处理", place: "仙I-303", start: 1, end: 2, weekday: 2),
-    Course(name: "摸鱼学导论", place: "仙III-404", start: 1, end: 12, weekday: 3),
+    Course(name: "摸鱼学导论", place: "仙III-404", start: 3, end: 12, weekday: 3),
+    Course(name: "摸鱼学导论", place: "仙III-404", start: 1, end: 4, weekday: 3),
   ];
 
   static Widget _createCourseNo(double height) {
@@ -68,17 +69,21 @@ class CourseTileList extends StatelessWidget {
     var size = MediaQuery.of(context).size;
 
     var width = size.width / _maxColumns - _sideWidth / _maxColumns;
-    var height =
-        (size.height - Constants.appBarHeight - _titleHeight) / _maxRows;
+    var fullHeight = size.height -
+        Constants.appBarHeight -
+        Constants.bottomBarHeight -
+        _titleHeight;
+    var height = fullHeight / _maxRows;
 
     return Column(
       children: [
         _createWeekdaysTitle(width),
         Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _createCourseNo(height),
             SizedBox(
-              height: size.height - Constants.appBarHeight - _titleHeight,
+              height: fullHeight,
               child: SingleChildScrollView(
                 child: Stack(
                   children: [

@@ -11,6 +11,8 @@ class ThemeProvider with ChangeNotifier {
     Colors.lime,
   ];
 
+  static const _modes = ThemeMode.values;
+
   ThemeProvider() {
     SharedPreferences.getInstance().then((value) {
       _current = value.getInt("theme") ?? 0;
@@ -19,7 +21,11 @@ class ThemeProvider with ChangeNotifier {
 
   var _current = 0;
 
+  var _mode = 0;
+
   MaterialColor get theme => _colors[_current];
+
+  ThemeMode get mode => _modes[_mode];
 
   void setColor(int index) async {
     if (index >= _colors.length) {
@@ -29,6 +35,11 @@ class ThemeProvider with ChangeNotifier {
     var _prefs = await SharedPreferences.getInstance();
     _prefs.setInt("theme", index);
     _current = index;
+    notifyListeners();
+  }
+
+  void toggleMode() {
+    _mode = (_mode + 1) % _modes.length;
     notifyListeners();
   }
 }

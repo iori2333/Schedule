@@ -29,9 +29,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: context.watch<ThemeProvider>().theme,
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: context.watch<ThemeProvider>().theme,
+          brightness: Brightness.light,
+        ),
       ),
+      darkTheme:ThemeData(
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: context.watch<ThemeProvider>().theme,
+          brightness: Brightness.dark,
+        ),
+      ),
+      themeMode: context.watch<ThemeProvider>().mode,
       onGenerateRoute: AppRouter.instance.generator,
     );
   }

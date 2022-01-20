@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:schedule/widgets/common/blur_container.dart';
 
 class Modal extends StatelessWidget {
   final Widget title;
@@ -14,16 +15,18 @@ class Modal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
+    return BlurredContainer(
+      child: AlertDialog(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+        ),
+        title: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: title,
+        ),
+        content: content,
+        actions: actions,
       ),
-      title: FittedBox(
-        fit: BoxFit.scaleDown,
-        child: title,
-      ),
-      content: content,
-      actions: actions,
     );
   }
 }
