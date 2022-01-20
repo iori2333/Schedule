@@ -30,8 +30,8 @@ jobs:
 
       - name: Package
         run: |
-          cp build\app\outputs\flutter-apk\app-release.apk .
-          cp build\app\outputs\bundle\release\app-release.aab .
+          mv build/app/outputs/flutter-apk/app-release.apk .
+          mv build/app/outputs/bundle/release/app-release.aab .
 
       - name: Release
         uses: "marvinpinto/action-automatic-releases@latest"
