@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:schedule/global.dart';
 import 'package:schedule/models/course.dart';
 import 'package:schedule/widgets/courses/tile.dart';
 
@@ -70,8 +69,8 @@ class CourseTileList extends StatelessWidget {
 
     var width = size.width / _maxColumns - _sideWidth / _maxColumns;
     var fullHeight = size.height -
-        Constants.appBarHeight -
-        Constants.bottomBarHeight -
+        kToolbarHeight -
+        kBottomNavigationBarHeight -
         _titleHeight;
     var height = fullHeight / _maxRows;
 

@@ -7,7 +7,9 @@ class CoursePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CourseTileList(),
+      body: SingleChildScrollView(
+        child: CourseTileList(),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: const Icon(Icons.add),
