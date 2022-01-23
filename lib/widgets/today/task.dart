@@ -53,8 +53,8 @@ class _TaskTileState extends State<TaskTile> {
           "${widget.task.due.hour}:${widget.task.due.minute}",
           style: TextStyle(
             color: (DateTime.now().isBefore(widget.task.due)
-                ? Colors.black
-                : Colors.red),
+                ? null
+                : Colors.redAccent),
           ),
         ),
       ),

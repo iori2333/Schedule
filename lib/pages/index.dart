@@ -3,7 +3,6 @@ import 'package:fluro/fluro.dart';
 import 'package:provider/provider.dart';
 import 'package:schedule/pages/courses.dart';
 import 'package:schedule/pages/lectures.dart';
-import 'package:schedule/global.dart';
 import 'package:schedule/pages/today.dart';
 import 'package:schedule/router.dart';
 import 'package:schedule/widgets/common/darkmode.dart';
@@ -38,7 +37,6 @@ class _IndexPageState extends State<IndexPage> {
 
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: Constants.appBarHeight,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -75,6 +73,7 @@ class _IndexPageState extends State<IndexPage> {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: _current,
+        showUnselectedLabels: false,
         onTap: (index) {
           setState(() => _current = index);
         },

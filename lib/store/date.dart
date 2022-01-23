@@ -3,7 +3,7 @@ import 'package:schedule/global.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DateProvider with ChangeNotifier {
-  int _week = 0;
+  int _week = 1;
 
   int get week => _week;
 
