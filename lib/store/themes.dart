@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeProvider with ChangeNotifier {
-  static const _colors = [
+  static const colors = [
     Colors.blueGrey,
     Colors.blue,
     Colors.purple,
@@ -24,12 +24,16 @@ class ThemeProvider with ChangeNotifier {
 
   var _mode = 0;
 
-  MaterialColor get theme => _colors[_color];
+  MaterialColor get color => colors[_color];
 
   ThemeMode get mode => _modes[_mode];
 
+  int get modeIndex => _mode;
+
+  int get colorIndex => _color;
+
   Future setColor(int index) async {
-    if (index >= _colors.length) {
+    if (index >= colors.length) {
       return;
     }
 
@@ -39,11 +43,17 @@ class ThemeProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future toggleMode() async {
-    _mode = (_mode + 1) % _modes.length;
-
+  Future setMode(int index) async {
+    if (index >= _modes.length) {
+      return;
+    }
+    _mode = index;
     var _prefs = await SharedPreferences.getInstance();
-    _prefs.setInt("theme-mode", _mode);
+    _prefs.setInt("theme_mode", _mode);
     notifyListeners();
+  }
+
+  Future toggleMode() async {
+    await setMode((_mode + 1) % _modes.length);
   }
 }
