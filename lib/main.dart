@@ -4,6 +4,7 @@ import 'package:schedule/router.dart';
 import 'package:schedule/store/configs.dart';
 import 'package:schedule/store/date.dart';
 import 'package:schedule/store/themes.dart';
+import 'package:schedule/db/courses.dart';
 
 void main() {
   runApp(MultiProvider(
@@ -11,6 +12,7 @@ void main() {
       ChangeNotifierProvider(create: (context) => ThemeProvider()),
       ChangeNotifierProvider(create: (context) => DateProvider()),
       ChangeNotifierProvider(create: (context) => ConfigProvider()),
+      ChangeNotifierProvider(create: (context) => CourseProvider()),
     ],
     child: const MyApp(),
   ));

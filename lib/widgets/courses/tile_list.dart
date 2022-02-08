@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:schedule/db/courses.dart';
 import 'package:schedule/models/course.dart';
 import 'package:schedule/widgets/courses/tile.dart';
+import 'package:provider/provider.dart';
 
 class CourseTileList extends StatelessWidget {
-  CourseTileList({Key? key}) : super(key: key);
+  const CourseTileList({Key? key}) : super(key: key);
 
   static const _maxColumns = 7;
   static const _maxRows = 12;
@@ -12,14 +14,6 @@ class CourseTileList extends StatelessWidget {
 
   static final _dividers = List.generate(_maxRows, (index) => index + 1);
   static final _weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-
-  final List<Course> _courses = [
-    Course(name: "数学物理方法", place: "仙II-204", start: 3, end: 4, weekday: 1),
-    Course(name: "数学物理方法", place: "仙II-204", start: 5, end: 6, weekday: 4),
-    Course(name: "数字信号处理", place: "仙I-303", start: 1, end: 2, weekday: 2),
-    Course(name: "摸鱼学导论", place: "仙III-404", start: 3, end: 12, weekday: 3),
-    Course(name: "摸鱼学导论", place: "仙III-404", start: 1, end: 4, weekday: 3),
-  ];
 
   static Widget _createCourseNo(double height) {
     return Column(
@@ -66,6 +60,7 @@ class CourseTileList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    var provider = context.watch<CourseProvider>();
 
     var width = size.width / _maxColumns - _sideWidth / _maxColumns;
     var fullHeight = size.height -
@@ -74,31 +69,36 @@ class CourseTileList extends StatelessWidget {
         _titleHeight;
     var height = fullHeight / _maxRows;
 
-    return Column(
-      children: [
-        _createWeekdaysTitle(width),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return FutureBuilder<List<Course>>(
+      future: provider.open().then((value) => value.all()),
+      builder: (context, snapshot) {
+        return Column(
           children: [
-            _createCourseNo(height),
-            SizedBox(
-              height: fullHeight,
-              child: Stack(
-                children: [
-                  ..._createDividers(size.width, height),
-                  ..._courses
-                      .map((e) => CourseTile(
-                            course: e,
-                            width: width,
-                            height: height,
-                          ))
-                      .toList()
-                ],
-              ),
+            _createWeekdaysTitle(width),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _createCourseNo(height),
+                SizedBox(
+                  // height: fullHeight,
+                  child: Stack(
+                    children: [
+                      ..._createDividers(size.width, height),
+                      ...(snapshot.data ?? [])
+                          .map((e) => CourseTile(
+                                course: e,
+                                width: width,
+                                height: height,
+                              ))
+                          .toList()
+                    ],
+                  ),
+                ),
+              ],
             ),
           ],
-        ),
-      ],
+        );
+      },
     );
   }
 }
