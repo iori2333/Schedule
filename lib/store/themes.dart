@@ -8,7 +8,7 @@ class ThemeProvider with ChangeNotifier {
     Colors.purple,
     Colors.amber,
     Colors.green,
-    Colors.lime,
+    Colors.deepOrange,
   ];
 
   static const _modes = ThemeMode.values;
@@ -47,9 +47,10 @@ class ThemeProvider with ChangeNotifier {
     if (index >= _modes.length) {
       return;
     }
-    _mode = index;
+
     var _prefs = await SharedPreferences.getInstance();
-    _prefs.setInt("theme_mode", _mode);
+    _prefs.setInt("theme-mode", index);
+    _mode = index;
     notifyListeners();
   }
 
